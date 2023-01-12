@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Enums\StatusInInteger;
+use App\Enums\UserType;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
@@ -37,12 +39,16 @@ class RegisteredUserController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
+            'trx_prefix' => 'required|string|max:6|min:2|unique:users',
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'trx_prefix' => $request->trx_prefix,
+            'type' => UserType::GENERAL,
+            'status' => StatusInInteger::ACTIVE,
             'password' => Hash::make($request->password),
         ]);
 

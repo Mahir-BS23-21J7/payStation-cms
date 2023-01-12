@@ -10,6 +10,7 @@ export default function Register() {
     const { data, setData, post, processing, errors, reset } = useForm({
         name: '',
         email: '',
+        trx_prefix: '',
         password: '',
         password_confirmation: '',
     });
@@ -66,6 +67,22 @@ export default function Register() {
                     />
 
                     <InputError message={errors.email} className="mt-2" />
+                </div>
+
+                <div className="mt-4">
+                    <InputLabel forInput="trx_prefix" value="Preferred Transaction No Prefix" />
+
+                    <TextInput
+                        type="text"
+                        name="trx_prefix"
+                        value={data.trx_prefix}
+                        className="mt-1 block w-full"
+                        autoComplete="username"
+                        handleChange={onHandleChange}
+                        required
+                    />
+
+                    <InputError message={errors.trx_prefix} className="mt-2" />
                 </div>
 
                 <div className="mt-4">
