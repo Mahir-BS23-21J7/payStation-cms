@@ -22,5 +22,9 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@admin.com',
             'password' => Hash::make('password')
         ]);
+
+        $this->call([
+            SubscriptionPlanSeeder::class,
+        ]);
     }
 }
