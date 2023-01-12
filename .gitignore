@@ -5,7 +5,7 @@
 /public/storage
 /storage/*.key
 /vendor
-public/hot
+/public/hot
 Homestead.json
 Homestead.yaml
 npm-debug.log
