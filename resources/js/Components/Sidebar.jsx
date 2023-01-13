@@ -3,6 +3,7 @@ import { Link } from '@inertiajs/inertia-react';
 import { BsChevronDown } from 'react-icons/bs';
 import { RiDashboardFill } from 'react-icons/ri';
 import { FaAngleDoubleLeft } from 'react-icons/fa'
+import NavLink from './NavLink';
 
 export default function Sidebar() {
     
@@ -10,59 +11,64 @@ export default function Sidebar() {
     { 
       key: 1,
       title: 'Menu 1',
-      link: '/',
+      routeName: '/',
       icon: <RiDashboardFill/>,
     },
     { 
       key: 2,
       title: 'Menu 2',
-      link: '/',
+      routeName: '/',
       icon: <RiDashboardFill/>,
     },
     {
       key: 3,
       title: 'Menu 3',
-      link: '/',
+      routeName: '/',
       icon: <RiDashboardFill/>,
       submenu: true,
       submenuOpen: false,
       submentItems: [
         { 
           key: 31,
-          title: 'Submenu 1' 
+          title: 'Submenu 1',
+          routeName: 'subscription.plans',
         },
         { 
           key: 32,
-          title: 'Submenu 2' 
+          title: 'Submenu 2',
+          routeName: 'subscription.plans', 
         },
         { 
           key: 33,
-          title: 'Submenu 3' 
+          title: 'Submenu 3',
+          routeName: 'subscription.plans',
         }
       ]
     },
     { 
       key: 4,
       title: 'Menu 4',
-      link: '/',
+      routeName: '/',
       icon: <RiDashboardFill/>,
       spacing: true,
     },
     {
       key: 5,
-      title: 'Menu 5',
-      link: '/',
+      title: 'Subscriptions',
+      routeName: '/',
       icon: <RiDashboardFill/>,
       submenu: true,
       submenuOpen: false,
       submentItems: [
         { 
           key: 51,
-          title: 'Submenu 1' 
+          title: 'Subscription Plans',
+          routeName: 'subscription.plans',
         },
         { 
           key: 52,
-          title: 'Submenu 2' 
+          title: 'Subscription History',
+          routeName: 'subscription.user.history', 
         }
       ]
     },
@@ -105,7 +111,12 @@ export default function Sidebar() {
                     <ul>
                       {menu.submentItems.map((submenuItem, key) => (
                         <li key={key} className='flex items-center gap-x-4 cursor-pointer p-2 pl-12 text-gray-600 hover:text-orange-600 rounded'>
-                          {submenuItem.title}
+                          <NavLink 
+                            href={route(submenuItem.routeName)}
+                            active={route().current().toString() == submenuItem.routeName}
+                          >
+                            {submenuItem.title}
+                          </NavLink>
                         </li>
                       ))}
                     </ul>
