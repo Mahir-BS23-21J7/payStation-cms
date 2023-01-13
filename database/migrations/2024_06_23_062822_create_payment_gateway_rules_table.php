@@ -13,15 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('payments', function (Blueprint $table) {
+        Schema::create('payment_gateway_rules', function (Blueprint $table) {
             $table->id();
-            $table->string('sys_trx_no');
-            $table->string('gw_payment_id');
-            $table->string('gw_trx_no')->nullable();
-            $table->string('gw_trx_ref_no')->nullable();
-            $table->string('sys_requested_amount');
-            $table->string('gw_approved_amount');
-            $table->string('payment_currency');
+            $table->foreignId('payment_gateway_id')->references('id')->on('payment_gateways')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('type_of_charge');
+            $table->string('value');
+            $table->date('from_date');
+            $table->date('to_date');
             $table->string('status');
             $table->timestamps();
         });
@@ -34,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('payments');
+        Schema::dropIfExists('payment_gateway_rules');
     }
 };
