@@ -11,7 +11,7 @@ use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\SubscriptionController;
 use Illuminate\Support\Facades\Route;
 
-Route::group(['prefix' => 'subscription', 'middleware' => ['auth']], function () {
+Route::group(['prefix' => 'subscription'], function () {
     Route::get('all-plans', [SubscriptionController::class, 'showSubscriptionPlans'])->name('subscription.plans');
-    Route::get('user-history', [SubscriptionController::class, 'showSubscriptionHistory'])->name('subscription.user.history');
+    Route::get('user-history', [SubscriptionController::class, 'showSubscriptionHistory'])->middleware('auth')->name('subscription.user.history');
 });

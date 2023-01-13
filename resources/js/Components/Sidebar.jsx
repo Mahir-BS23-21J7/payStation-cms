@@ -30,15 +30,18 @@ export default function Sidebar() {
       submentItems: [
         { 
           key: 31,
-          title: 'Submenu 1' 
+          title: 'Submenu 1',
+          routeName: 'subscription.plans',
         },
         { 
           key: 32,
-          title: 'Submenu 2' 
+          title: 'Submenu 2',
+          routeName: 'subscription.plans', 
         },
         { 
           key: 33,
-          title: 'Submenu 3' 
+          title: 'Submenu 3',
+          routeName: 'subscription.plans',
         }
       ]
     },
