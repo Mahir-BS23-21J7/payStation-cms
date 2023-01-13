@@ -13,16 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('payments', function (Blueprint $table) {
+        Schema::create('payment_gateways', function (Blueprint $table) {
             $table->id();
-            $table->string('sys_trx_no');
-            $table->string('gw_payment_id');
-            $table->string('gw_trx_no')->nullable();
-            $table->string('gw_trx_ref_no')->nullable();
-            $table->string('sys_requested_amount');
-            $table->string('gw_approved_amount');
-            $table->string('payment_currency');
+            $table->integer('code');
+            $table->string('name');
+            $table->string('type');
+            $table->string('currency');
+            $table->string('logo_web')->nullable();
+            $table->string('logo_mobile')->nullable();
             $table->string('status');
+            $table->longText('credentials')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -34,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('payments');
+        Schema::dropIfExists('payment_gateways');
     }
 };

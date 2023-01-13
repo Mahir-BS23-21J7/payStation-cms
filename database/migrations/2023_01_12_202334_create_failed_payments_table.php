@@ -15,9 +15,15 @@ return new class extends Migration
     {
         Schema::create('failed_payments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_subscription_plan_id')->references('id')->on('user_subscription_plans')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('amount')->default(0);
-            $table->string('payment_id');
+            $table->foreignId('payment_id')->references('id')->on('payments')->onUpdate('cascade');
+            $table->string('sys_trx_no');
+            $table->string('gw_payment_id');
+            $table->string('gw_trx_no')->nullable();
+            $table->string('gw_trx_ref_no')->nullable();
+            $table->string('sys_requested_amount');
+            $table->string('gw_approved_amount');
+            $table->string('payment_currency');
+            $table->string('remarks')->nullable();
             $table->timestamps();
         });
     }

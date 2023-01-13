@@ -13,16 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('payments', function (Blueprint $table) {
+        Schema::create('failed_refunds', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('refund_id')->references('id')->on('refunds')->onUpdate('cascade');
+            $table->foreignId('successful_payment_id')->references('id')->on('successful_payments')->onUpdate('cascade');
             $table->string('sys_trx_no');
             $table->string('gw_payment_id');
-            $table->string('gw_trx_no')->nullable();
-            $table->string('gw_trx_ref_no')->nullable();
             $table->string('sys_requested_amount');
             $table->string('gw_approved_amount');
-            $table->string('payment_currency');
-            $table->string('status');
+            $table->string('currency');
+            $table->integer('remarks')->nullable();
             $table->timestamps();
         });
     }
@@ -34,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('payments');
+        Schema::dropIfExists('failed_refunds');
     }
 };
