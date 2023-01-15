@@ -2,17 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Services\SubscriptionServices\SubscriptionPlanService;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class SubscriptionController extends Controller
 {
-    public function showSubscriptionPlans()
+    private $subscriptionPlanService;
+
+    public function showSubscriptionPlans(SubscriptionPlanService $subscriptionPlanService)
     {
-        dd('plans');
+        $allSubscriptionPlans = $subscriptionPlanService->showAllSubscriptionPlans();
+
+        return Inertia::render('User/SubscriptionPlans', [
+            'subscription_plans' => $allSubscriptionPlans
+        ]);
     }
 
     public function showSubscriptionHistory()
     {
-        dd('history');
+        return Inertia::render('SubscriptionPlans');
     }
 }
