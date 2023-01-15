@@ -4,9 +4,12 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Admin;
+use App\Models\FailedPayment;
+use App\Models\Payment;
 use App\Models\PaymentGateway;
 use App\Models\PaymentGatewayRule;
 use App\Models\SubscriptionPlan;
+use App\Models\SuccessfulPayment;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -80,6 +83,56 @@ class DatabaseSeeder extends Seeder
             'from_date' => Carbon::now()->toDateTimeString(),
             'to_date' => Carbon::now()->addMonths(6)->toDateTimeString(),
             'status' => StatusInString::ACTIVE
+        ]);
+
+        Payment::insert([
+            [
+                'sys_trx_no' => 'abc',
+                'gw_payment_id' => 'gw_pay_abc',
+                'gw_trx_no' => 'gw_trx_abc',
+                'gw_trx_ref_no' => 'gw_ref_abc',
+                'sys_requested_amount' => '20000',
+                'gw_approved_amount' => '20000',
+                'payment_currency' => 'BDT',
+                'status' => StatusInString::SUCCEED
+            ],
+            [
+                'sys_trx_no' => 'def',
+                'gw_payment_id' => 'gw_pay_def',
+                'gw_trx_no' => 'gw_trx_def',
+                'gw_trx_ref_no' => 'gw_ref_def',
+                'sys_requested_amount' => '10000',
+                'gw_approved_amount' => '10000',
+                'payment_currency' => 'BDT',
+                'status' => StatusInString::FAILED
+            ],
+        ]);
+
+        SuccessfulPayment::insert([
+            [
+                'payment_id' => 1,
+                'sys_trx_no' => 'abc',
+                'gw_payment_id' => 'gw_pay_abc',
+                'gw_trx_no' => 'gw_trx_abc',
+                'gw_trx_ref_no' => 'gw_ref_abc',
+                'sys_requested_amount' => '20000',
+                'gw_approved_amount' => '20000',
+                'payment_currency' => 'BDT'
+            ]
+        ]);
+
+        FailedPayment::insert([
+            [
+                'payment_id' => 2,
+                'sys_trx_no' => 'def',
+                'gw_payment_id' => 'gw_pay_def',
+                'gw_trx_no' => 'gw_trx_def',
+                'gw_trx_ref_no' => 'gw_ref_def',
+                'sys_requested_amount' => '10000',
+                'gw_approved_amount' => '10000',
+                'payment_currency' => 'BDT',
+                'remarks' => 'ERROR_CODE: 500'
+            ]
         ]);
     }
 }
