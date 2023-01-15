@@ -10,7 +10,7 @@ class SubscriptionController extends Controller
 {
     private $subscriptionPlanService;
 
-    public function showSubscriptionPlans(SubscriptionPlanService $subscriptionPlanService)
+    public function showSubscriptionPlans(Request $request, SubscriptionPlanService $subscriptionPlanService)
     {
         $allSubscriptionPlans = $subscriptionPlanService->showAllSubscriptionPlans();
 
@@ -19,8 +19,9 @@ class SubscriptionController extends Controller
         ]);
     }
 
-    public function showSubscriptionHistory()
+    public function showSubscriptionHistory(Request $request)
     {
+        dd($request->query());
         return Inertia::render('SubscriptionPlans');
     }
 }
