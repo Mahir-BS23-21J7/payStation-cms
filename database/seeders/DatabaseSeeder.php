@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Enums\GatewayType;
 use App\Enums\StatusInString;
 use App\Enums\GatewayChargeType;
+use App\Models\User;
 
 class DatabaseSeeder extends Seeder
 {
@@ -27,6 +28,19 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\Admin::factory(1)->create();
+
+        User::factory()->insert([
+            [
+                'name' => 'Test 1',
+                'email' => 'test@1.com',
+                'password' => Hash::make('password')
+            ],
+            [
+                'name' => 'Test 2',
+                'email' => 'test@2.com',
+                'password' => Hash::make('password')
+            ]
+        ]);
 
         Admin::factory()->create([
             'name' => 'Test Admin',
