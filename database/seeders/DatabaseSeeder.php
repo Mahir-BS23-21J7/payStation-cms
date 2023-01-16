@@ -33,11 +33,13 @@ class DatabaseSeeder extends Seeder
             [
                 'name' => 'Test 1',
                 'email' => 'test@1.com',
+                'trx_prefix' => 'test1',
                 'password' => Hash::make('password')
             ],
             [
                 'name' => 'Test 2',
                 'email' => 'test@2.com',
+                'trx_prefix' => 'test2',
                 'password' => Hash::make('password')
             ]
         ]);
