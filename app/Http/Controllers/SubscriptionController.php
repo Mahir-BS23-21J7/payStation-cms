@@ -19,7 +19,7 @@ class SubscriptionController extends Controller
         ]);
     }
 
-    public function showSubscriptionHistory(Request $request)
+    public function showUserSubscriptionHistory(Request $request)
     {
         dd($request->query());
         return Inertia::render('SubscriptionPlans');

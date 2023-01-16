@@ -40,7 +40,11 @@ export default function Dashboard(props) {
                                             <td className="text-center py-6">{subscriptionPlan.type}</td>
                                             <td className="text-center py-6">{subscriptionPlan.price / 100}</td>
                                             <td className="text-center py-6">{subscriptionPlan.currency}</td>
-                                            <td className="text-center py-6"><Link href={route("subscription.user.history", subscriptionPlan.id)}> <PrimaryButton>Purchase</PrimaryButton></Link></td>
+                                            <td className="text-center py-6">
+                                                <Link href={route("subscription.purchase", { subscription_plan_id: subscriptionPlan.id })}> 
+                                                    <PrimaryButton>Purchase</PrimaryButton>
+                                                </Link>
+                                            </td>
                                         </tr>
                                     ))}
                                 </tbody>
