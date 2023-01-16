@@ -20,6 +20,9 @@ return new class extends Migration
             $table->dateTime('starts_at');
             $table->dateTime('ends_at');
             $table->boolean('status')->default(1);
+            $table->string('sys_trx_no');
+            $table->boolean('paid')->default(0);
+            $table->text('hook_endpoint');
             $table->timestamps();
         });
     }
