@@ -22,7 +22,6 @@ return new class extends Migration
             $table->boolean('status')->default(1);
             $table->string('sys_trx_no');
             $table->boolean('paid')->default(0);
-            $table->text('hook_url');
             $table->timestamps();
         });
     }
