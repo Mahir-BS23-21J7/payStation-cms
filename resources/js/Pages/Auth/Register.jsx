@@ -11,6 +11,7 @@ export default function Register() {
         name: '',
         email: '',
         trx_prefix: '',
+        hook_url: '',
         password: '',
         password_confirmation: '',
     });
@@ -61,7 +62,7 @@ export default function Register() {
                         name="email"
                         value={data.email}
                         className="mt-1 block w-full"
-                        autoComplete="username"
+                        autoComplete="email"
                         handleChange={onHandleChange}
                         required
                     />
@@ -77,12 +78,28 @@ export default function Register() {
                         name="trx_prefix"
                         value={data.trx_prefix}
                         className="mt-1 block w-full"
-                        autoComplete="username"
+                        autoComplete="trx_prefix"
                         handleChange={onHandleChange}
                         required
                     />
 
                     <InputError message={errors.trx_prefix} className="mt-2" />
+                </div>
+
+                <div className="mt-4">
+                    <InputLabel forInput="hook_url" value="Preferred webhook url" />
+
+                    <TextInput
+                        type="text"
+                        name="hook_url"
+                        value={data.hook_url}
+                        className="mt-1 block w-full"
+                        autoComplete="hook_url"
+                        handleChange={onHandleChange}
+                        required
+                    />
+
+                    <InputError message={errors.hook_url} className="mt-2" />
                 </div>
 
                 <div className="mt-4">

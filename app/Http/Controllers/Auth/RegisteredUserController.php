@@ -40,6 +40,7 @@ class RegisteredUserController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'trx_prefix' => 'required|string|max:6|min:2|unique:users',
+            'hook_url' => 'required|url|unique:users',
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
@@ -47,6 +48,7 @@ class RegisteredUserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'trx_prefix' => $request->trx_prefix,
+            'hook_url' => $request->hook_url,
             'type' => UserType::GENERAL,
             'status' => StatusInInteger::ACTIVE,
             'password' => Hash::make($request->password),
