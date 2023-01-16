@@ -35,6 +35,7 @@ class DatabaseSeeder extends Seeder
                 'email' => 'test@1.com',
                 'trx_prefix' => 'test1',
                 'type' => 'general',
+                'hook_endpoint' => 'http://localhost:8000/subscription/payment-status',
                 'password' => Hash::make('password')
             ],
             [
@@ -42,6 +43,7 @@ class DatabaseSeeder extends Seeder
                 'email' => 'test@2.com',
                 'trx_prefix' => 'test2',
                 'type' => 'general',
+                'hook_endpoint' => 'http://localhost:8000/subscription/payment-status',
                 'password' => Hash::make('password')
             ]
         ]);
