@@ -29,7 +29,7 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\Admin::factory(1)->create();
 
-        User::factory()->insert([
+        User::insert([
             [
                 'name' => 'Test 1',
                 'email' => 'test@1.com',
