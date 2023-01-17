@@ -7,6 +7,11 @@ use Carbon\Carbon;
 
 class UserSubscriptionPlanRepository
 {
+    public function save(array $data) 
+    {
+        return UserSubscriptionPlan::create($data);
+    }
+
     public function userLastSubscriptionEndDate(int $userId)
     {
         return UserSubscriptionPlan::query()

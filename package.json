@@ -23,6 +23,7 @@
         "vite": "^3.0.0"
     },
     "dependencies": {
+        "classnames": "^2.3.2",
         "react-icons": "^4.6.0"
     }
 }

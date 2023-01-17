@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import ApplicationLogo from '@/Components/ApplicationLogo';
-import Dropdown from '@/Components/Dropdown';
 import NavLink from '@/Components/NavLink';
 import Sidebar from '@/Components/Sidebar';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
@@ -24,8 +23,8 @@ export default function Authenticated({ guard, auth, header, children }) {
                             </div>
 
                             <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <NavLink 
-                                    href={route(guard ? `${guard}.dashboard` : 'dashboard')} 
+                                <NavLink
+                                    href={route(guard ? `${guard}.dashboard` : 'dashboard')}
                                     active={route().current(guard ? `${guard}.dashboard` : 'dashboard').toString()}>
                                     Dashboard
                                 </NavLink>
@@ -44,10 +43,10 @@ export default function Authenticated({ guard, auth, header, children }) {
                                         {auth.user.name}
                                     </button>
                                 </span>
-                                <Link 
-                                    href={route(guard ? `${guard}.logout` : 'logout')} 
-                                    method="post" 
-                                    as="button" 
+                                <Link
+                                    href={route(guard ? `${guard}.logout` : 'logout')}
+                                    method="post"
+                                    as="button"
                                     className="inline-flex items-center px-3 py-2 border border-transparent 
                                     text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:font-semibold 
                                     hover:text-orange-700 focus:outline-none transition ease-in-out duration-150">
@@ -91,7 +90,7 @@ export default function Authenticated({ guard, auth, header, children }) {
                         </div>
 
                         <div className="mt-3 space-y-1">
-                            <ResponsiveNavLink 
+                            <ResponsiveNavLink
                                 href={route(guard ? `${guard}.logout` : 'logout')} method="post" as="button" className="hover:text-orange-700">
                                 Log Out
                             </ResponsiveNavLink>
@@ -110,11 +109,11 @@ export default function Authenticated({ guard, auth, header, children }) {
                 <div className='flex'>
 
                     {/* sidebar */}
-                    {guard ? <SidebarAdmin guard/> : <Sidebar/>}
-                    
+                    {guard ? <SidebarAdmin guard /> : <Sidebar />}
+
                     {/* content */}
                     <div className='flex-1'>{children}</div>
-                
+
                 </div>
             </main>
         </div>

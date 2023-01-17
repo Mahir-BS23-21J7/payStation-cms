@@ -14,6 +14,6 @@ Class SubscriptionPlanService
     }
     public function showAllSubscriptionPlans()
     {
-        return $this->subscriptionPlan::all()->toArray();
+        return $this->subscriptionPlan::paginate(10);
     }
 }

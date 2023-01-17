@@ -2,7 +2,7 @@
 
 namespace App\Http\Services\SubscriptionServices;
 
-use App\Enums\SubscriptionPlansType;
+use App\Enums\SubscriptionPlanType;
 use App\Repositories\SubscriptionPlanRepository;
 use App\Repositories\UserSubscriptionPlanRepository;
 use Carbon\Carbon;
@@ -27,18 +27,34 @@ Class SubscriptionPurchaseService
         $userId = Auth::User()->id; 
         $subscriptionType = $this->subscriptionPlanRepository->subscriptionPlanType($subscriptionPlanId);
         $userLastSubscriptionEndDate = $this->userSubscriptionPlanRepository->userLastSubscriptionEndDate($userId);
-        
         $userNewSubscriptionStartDate = Carbon::parse($userLastSubscriptionEndDate)->addDay();
         $userNewSubscriptionEndDate = null;
 
-        if($subscriptionType == SubscriptionPlansType::HALF_YEARLY) {
+        if($subscriptionType == (SubscriptionPlanType::HALF_YEARLY)->value) {
             $userNewSubscriptionEndDate = Carbon::parse($userLastSubscriptionEndDate)->addDays(6 * 30);
-        } elseif ($subscriptionType == SubscriptionPlansType::YEARLY) {
+        } elseif ($subscriptionType == (SubscriptionPlanType::YEARLY)->value) {
             $userNewSubscriptionEndDate = Carbon::parse($userLastSubscriptionEndDate)->addDays(12 * 30);
         } else {
             $userNewSubscriptionEndDate = Carbon::parse($userLastSubscriptionEndDate)->addDays(30);
         }
 
-        dd($userNewSubscriptionStartDate, $userNewSubscriptionEndDate);
+        // dd($userNewSubscriptionStartDate, $userNewSubscriptionEndDate);
+
+        // Create Payment API call
+
+        // Insert UserSubscriptionPlan with SYS_TRX_ID
+        $this->userSubscriptionPlanRepository->save([
+            'user_id' => $userId,
+            'subscription_plan_id' => $subscriptionPlanId,
+            'starts_at' => $userNewSubscriptionStartDate->toDateTimeString(),
+            'ends_at' => $userNewSubscriptionEndDate->toDateTimeString(),
+            'paid' => true,
+            'sys_trx_no' => 'test101'
+        ]);
+        
+        // Redirect to redirect URL
+        
+
+        return redirect()->back();
     }
 }
