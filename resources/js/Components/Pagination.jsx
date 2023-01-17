@@ -5,11 +5,10 @@ import classNames from 'classnames';
 const PageLink = ({ active, label, url }) => {
   const className = classNames(
     [
-      'mr-1 mb-1',
-      'px-4 py-3',
-      'border border-solid border-gray-300 rounded',
+      'mr-1 mb-1 mt-2',
+      'px-3 py-1',
       'text-sm',
-      'hover:bg-white',
+      'hover:bg-gray-200 hover:rounded',
       'focus:outline-none focus:border-indigo-700 focus:text-indigo-700'
     ],
     {
@@ -28,7 +27,7 @@ const PageLink = ({ active, label, url }) => {
 // and dots, if exists (...)
 const PageInactive = ({ label }) => {
   const className = classNames(
-    'mr-1 mb-1 px-4 py-3 text-sm border rounded border-solid border-gray-300 text-gray'
+    'mr-1 mb-1 mt-2 px-3 py-1 text-sm rounded text-gray'
   );
   return (
     <div className={className} dangerouslySetInnerHTML={{ __html: label }} />
