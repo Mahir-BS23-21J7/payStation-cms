@@ -11,7 +11,7 @@ class SubscriptionController extends Controller
 {
     public function showSubscriptionPlans(Request $request, SubscriptionPlanService $subscriptionPlanService)
     {
-        $allSubscriptionPlans = $subscriptionPlanService->showAllSubscriptionPlans();
+        $allSubscriptionPlans = $subscriptionPlanService->allSubscriptionPlans();
 
         return Inertia::render('User/SubscriptionPlans', [
             'subscription_plans' => $allSubscriptionPlans
