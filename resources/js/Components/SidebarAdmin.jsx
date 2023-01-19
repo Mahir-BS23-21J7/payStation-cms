@@ -59,7 +59,7 @@ export default function SidebarAdmin({ guard }) {
 
     return (
       <Fragment>
-        <div className={`bg-transparent h-screen overflow-y-auto mx-1 my-5 sm:m-5 sm:rounded relative duration-500 ${sidebarOpen ? 'w-72' : 'w-20'}`}>
+        <div className={`bg-transparent h-screen overflow-y-auto mx-1 my-5 sm:m-5 sm:rounded relative duration-500 ${sidebarOpen ? 'w-72' : 'w-10'}`}>
           <div className='sidebar-content p-0 -mt-2 relative'>
             <div className='sidebar-action-icon float-right fixed z-90 bottom-6 left-9'>
               <FaAngleDoubleLeft
@@ -77,8 +77,8 @@ export default function SidebarAdmin({ guard }) {
                       hover:bg-orange-100 rounded ${menu.spacing ? 'mt-9' : 'mt-2'}`}
                       onClick={() => handleSubmenuOpen(menu.key)}
                     >
-                      <span className='text-2xl block mr-2'> {menu?.icon} </span>
-                      <span className={`truncate font-semibold flex-1 ${!sidebarOpen && 'hidden'}`}> {menu.title} </span>
+                      <span className='text-xl block mr-2'> {menu?.icon} </span>
+                      <span className={`truncate font-semibold flex-1 text-sm ${!sidebarOpen && 'hidden'}`}> {menu.title} </span>
                       {menu.submenu && sidebarOpen && (
                         <BsChevronDown className={`${menu?.submenuOpen && 'rotate-180'} p-1 text-lg`}/>
                       )}
