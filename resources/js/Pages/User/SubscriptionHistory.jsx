@@ -2,6 +2,7 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head, Link } from '@inertiajs/inertia-react';
 import PrimaryButton from '@/Components/PrimaryButton';
 import Pagination from '@/Components/Pagination';
+import SubHeader from '@/Components/SubHeader';
 
 export default function SubscriptionHistory(props) {
 
@@ -16,13 +17,7 @@ export default function SubscriptionHistory(props) {
         >
             <Head title="User Subscription History" />
 
-            <div className="py-5">
-                <div className="mx-auto pl-0 pr-1 sm:pr-4">
-                    <div className="bg-white-200 overflow-hidden shadow-sm rounded">
-                        <div className="p-6 bg-white border-b border-gray-200">Purchasable subscription plans</div>
-                    </div>
-                </div>
-            </div>
+            <SubHeader message="Subscription history" />
 
             <div className="py-0">
                 <div className="mx-auto pl-0 pr-1 sm:pr-4">
