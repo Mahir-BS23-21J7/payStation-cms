@@ -4,13 +4,14 @@ namespace App\Http\Services\SubscriptionServices;
 
 use App\Models\SubscriptionPlan;
 
-Class UserSubscriptionService 
+Class SubscriptionHistoryService 
 {
     public function __construct()
     {
 
     }
-    public function showAllSubscriptionPlans()
+
+    public function subscriptionHistory()
     {
 
     }

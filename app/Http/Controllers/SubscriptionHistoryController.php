@@ -11,7 +11,6 @@ class SubscriptionHistoryController extends Controller
 {
     public function showUserSubscriptionHistory(Request $request, SubscriptionHistoryService $subscriptionHistoryService)
     {
-        sleep(10);
         $userId = Auth::User()->id;
         $userSubscriptionHistory = $subscriptionHistoryService->subscriptionHistory($userId);
 
