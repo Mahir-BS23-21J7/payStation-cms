@@ -60,7 +60,7 @@ export default function SidebarAdmin({ guard }) {
     return (
       <Fragment>
         <div className={`bg-transparent h-screen overflow-y-auto mx-1 my-5 sm:m-5 sm:rounded relative duration-500 ${sidebarOpen ? 'w-72' : 'w-20'}`}>
-          <div className='sidebar-content p-5 -mt-2 relative'>
+          <div className='sidebar-content p-0 -mt-2 relative'>
             <div className='sidebar-action-icon float-right fixed z-90 bottom-6 left-9'>
               <FaAngleDoubleLeft
                 className={`bg-orange-100 text-orange-800 rounded-full p-1 text-5xl cursor-pointer ${!sidebarOpen && 'rotate-180'}`}
