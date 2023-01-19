@@ -28,7 +28,6 @@ export default function SubscriptionHistory(props) {
                 <div className="mx-auto pl-0 pr-1 sm:pr-4">
                     <div className="bg-white-200 overflow-hidden shadow-sm rounded">
                         <div className="p-6 bg-white border-b border-gray-200">
-                            {/* {JSON.stringify(props.subscription_plans.links)} */}
                             <table className="table-fixed w-full text-sm text-left text-gray-500 dark:text-gray-400">
                                 <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                     <tr>
@@ -41,7 +40,6 @@ export default function SubscriptionHistory(props) {
                                         <th scope="col" className="text-justify py-3">Paid</th>
                                     </tr>
                                 </thead>
-                                {/* {JSON.stringify(data)} */}
                                 <tbody>
                                     {data.map(userSubscriptionPlan => (
                                         <tr key={userSubscriptionPlan.id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
