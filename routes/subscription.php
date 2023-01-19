@@ -13,7 +13,11 @@ use App\Http\Controllers\SubscriptionController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'subscription'], function () {
+    
+    // For All
     Route::get('all-plans', [SubscriptionController::class, 'showSubscriptionPlans'])->name('subscription.plans');
+    
+    // For User
     Route::get('purchase', [SubscriptionController::class, 'purchaseSubscription'])->middleware('auth')->name('subscription.purchase');
     Route::get('user-history', [UserSubscriptionController::class, 'showSubscriptionHistory'])->middleware('auth')->name('subscription.user.history');
 });
