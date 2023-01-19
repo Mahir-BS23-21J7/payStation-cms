@@ -12,7 +12,7 @@ Class SubscriptionPlanService
     {
         $this->subscriptionPlan = $subscriptionPlan;
     }
-    public function showAllSubscriptionPlans()
+    public function allSubscriptionPlans()
     {
         return $this->subscriptionPlan::paginate(10);
     }
