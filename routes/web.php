@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PaymentHistoryController;
 use App\Http\Controllers\SubscriptionHistoryController;
 use App\Http\Controllers\SubscriptionController;
 use Illuminate\Foundation\Application;
@@ -43,4 +44,11 @@ Route::group(['prefix' => 'subscription'], function () {
     Route::get('purchase', [SubscriptionController::class, 'purchaseSubscription'])->middleware('auth')->name('subscription.purchase');
     Route::get('all-plans', [SubscriptionController::class, 'showSubscriptionPlans'])->name('subscription.plans');
     Route::get('user-history', [SubscriptionHistoryController::class, 'showUserSubscriptionHistory'])->middleware('auth')->name('subscription.user.history');
+});
+
+// Subscription
+Route::group(['prefix' => 'user/payments'], function () {
+    Route::get('all', [PaymentHistoryController::class, 'allPayments'])->middleware('auth.any')->name('user.payments.all');
+    Route::get('successful', [PaymentHistoryController::class, 'showSubscriptionPlans'])->middleware('auth.any')->name('user.payments.successful');
+    Route::get('failed', [PaymentHistoryController::class, 'showUserSubscriptionHistory'])->middleware('auth.any')->name('user.payments.failed');
 });
