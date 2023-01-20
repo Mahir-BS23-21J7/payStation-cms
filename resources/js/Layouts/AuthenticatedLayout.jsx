@@ -10,15 +10,15 @@ export default function Authenticated({ guard, auth, header, children }) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
 
     return (
-        <div className="min-h-screen bg-gray-100">
+        <div className="min-h-screen bg-gray-100 overflow-hidden">
             <nav className="bg-white border-b border-gray-100">
                 <div className="mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between h-16">
                         <div className="flex">
 
-                            <div className="shrink-0 flex items-center">
+                            <div className="shrink-0 flex items-center pl-3">
                                 <Link href="/">
-                                    <ApplicationLogo className="block h-9 w-auto text-gray-500 -ml-1.5" />
+                                    <ApplicationLogo className="block h-9 w-auto text-gray-500" />
                                 </Link>
                             </div>
 
@@ -106,13 +106,19 @@ export default function Authenticated({ guard, auth, header, children }) {
             )} */}
 
             <main>
-                <div className='flex'>
+                <div className='grid grid-cols-12'>
 
                     {/* sidebar */}
-                    {guard ? <SidebarAdmin guard /> : <Sidebar />}
+                    <div className="col-span-2 pr-5">
+                        {guard ? <SidebarAdmin guard /> : <Sidebar />}
+                    </div>
+
 
                     {/* content */}
-                    <div className='flex-1'>{children}</div>
+                    <div className="col-span-10 pl-5">
+                        {children}
+                    </div>
+
 
                 </div>
             </main>
