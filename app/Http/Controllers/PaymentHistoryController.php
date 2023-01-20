@@ -15,6 +15,8 @@ class PaymentHistoryController extends Controller
         if(Auth::guard('admin')->check()) {
             // return everything from payment table
         }
+
+        $user = Auth::user();
     }
 
     public function successfulPayments()
