@@ -8,6 +8,7 @@ import SidebarAdmin from '@/Components/SidebarAdmin';
 
 export default function Authenticated({ guard, auth, header, children }) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
+    const sidebarOpen = localStorage.getItem('sidebar');
 
     return (
         <div className="min-h-screen bg-gray-100 overflow-hidden">
@@ -99,23 +100,19 @@ export default function Authenticated({ guard, auth, header, children }) {
                 </div>
             </nav>
 
-            {/* {header && (
-                <header className="bg-white shadow">
-                    <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">{header}</div>
-                </header>
-            )} */}
+
 
             <main>
                 <div className='grid grid-cols-12'>
-
+                    {console.log('sidebar', sidebarOpen)}
                     {/* sidebar */}
-                    <div className="col-span-2 pr-5">
+                    <div id="sidebar-container" className={`${sidebarOpen == 'true' ? 'col-span-2 pr-5' : 'lg:col-span-1 col-span-2 pr-5 lg:pr-0' }`}>
                         {guard ? <SidebarAdmin guard /> : <Sidebar />}
                     </div>
 
 
                     {/* content */}
-                    <div className="col-span-10 pl-5">
+                    <div id="content-container" className={`${sidebarOpen == 'true' ? 'col-span-10 pl-5' : 'lg:col-span-11 col-span-10 pl-5 lg:pl-0' }`}>
                         {children}
                     </div>
 

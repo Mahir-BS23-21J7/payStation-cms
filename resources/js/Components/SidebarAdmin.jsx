@@ -1,8 +1,9 @@
 import React, { useEffect, useState, Fragment } from 'react';
-import { Link } from '@inertiajs/inertia-react';
+import { Link, useRemember } from '@inertiajs/inertia-react';
 import { BsChevronDown } from 'react-icons/bs';
 import { RiDashboardFill } from 'react-icons/ri';
 import { FaAngleDoubleLeft } from 'react-icons/fa'
+import { Inertia } from '@inertiajs/inertia';
 
 export default function SidebarAdmin({ guard }) {
     
@@ -51,11 +52,32 @@ export default function SidebarAdmin({ guard }) {
     ];
 
     const menuList = adminMenuList;
-
-    const [sidebarOpen, setSidebarOpen] = useState(true);
     const [menus, setMenus] = useState(menuList);
-
     const handleSubmenuOpen = key => setMenus(menus.map(menu => menu.key === key ? {...menu, submenuOpen: !menu.submenuOpen} : menu));
+
+    const getSidebarLocalState = () => localStorage.getItem('sidebar') == 'true' ? true : false
+    const setSidebarLocalState = (sidebarOpen) => localStorage.setItem('sidebar', !sidebarOpen)
+    const [sidebarOpen, setSidebarOpen] = useRemember(getSidebarLocalState(), 'sidebar');
+    const handleSidebarOpen = () => {
+      setSidebarOpen((previousState) => !previousState);
+      setSidebarLocalState(sidebarOpen)
+    }
+
+    useEffect(() => {
+      let sidebarContainer = document.getElementById('sidebar-container')
+      let contentContainer = document.getElementById('content-container')
+  
+      sidebarContainer.classList.remove('lg:col-span-1', 'col-span-2', 'pr-5', 'lg:pr-0')
+      contentContainer.classList.remove('lg:col-span-11', 'col-span-10', 'pl-5', 'lg:pl-0')
+  
+      if(getSidebarLocalState()) {
+        sidebarContainer.classList.add('col-span-2', 'pr-5',)
+        contentContainer.classList.add('col-span-10', 'pl-5')
+      } else {
+        sidebarContainer.classList.add('lg:col-span-1', 'col-span-2', 'pr-5', 'lg:pr-0')
+        contentContainer.classList.add('lg:col-span-11', 'col-span-10', 'pl-5', 'lg:pl-0')
+      }
+    }, [sidebarOpen]);
 
     return (
       <Fragment>
@@ -64,7 +86,7 @@ export default function SidebarAdmin({ guard }) {
             <div className='sidebar-action-icon fixed z-90 bottom-6 left-9'>
               <FaAngleDoubleLeft
                 className={`bg-gray-800 text-orange-300 antialiased rounded-full p-1 text-5xl cursor-pointer ${!sidebarOpen && 'rotate-180'}`}
-                onClick={() => setSidebarOpen((previousState) => !previousState)}
+                onClick={handleSidebarOpen}
               />
             </div>
             <div className='menu-list'> 

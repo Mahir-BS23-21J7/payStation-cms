@@ -24,11 +24,9 @@ Class PaymentHistoryService {
         $this->successfulPaymentRepository = $successfulPaymentRepository;
     }
 
-    public function allPayments(int|string|null $userId = null) 
+    public function allPayments(string|null $trxPrefix = null) 
     {
-        if(is_null($userId)) {
-            
-        }
+        return $this->allPaymentRepository->all($trxPrefix);
     }
 
     public function successfulPayments(int|string|null $userId = null) 
