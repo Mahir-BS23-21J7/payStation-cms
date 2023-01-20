@@ -27,7 +27,7 @@ Class PaymentHistoryService {
     public function allPayments(int|string|null $userId = null) 
     {
         if(is_null($userId)) {
-
+            
         }
     }
 
